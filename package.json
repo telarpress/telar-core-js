@@ -1,0 +1,23 @@
+{
+  "name": "telar-core",
+  "version": "1.0.0",
+  "description": "Telar core in JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/telarpress/telar-core-js.git"
+  },
+  "keywords": [
+    "telar",
+    "core"
+  ],
+  "author": "Amir Movahedi <amir.gholzam@live.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/telarpress/telar-core-js/issues"
+  },
+  "homepage": "https://github.com/telarpress/telar-core-js#readme"
+}
