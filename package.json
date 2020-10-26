@@ -1,6 +1,6 @@
 {
   "name": "telar-core",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Telar core in JavaScript.",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
@@ -8,7 +8,7 @@
     "test": "jest --config jestconfig.json",
     "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "lint": "eslint . --ext .ts",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "lint:fix": "eslint . --ext .ts --fix",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
