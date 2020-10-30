@@ -1,11 +1,4 @@
-import config, { CoreConfig } from './config';
-
-function init(coreConfig: CoreConfig): void {
-    console.log('[INFO] Initializing telar core config ', coreConfig);
-    config.setConfig(coreConfig);
-    console.log('[INFO] Telar core config is initilized');
-}
-
-export default {
-    init,
-};
+export * as config from './config';
+export * as utils from './utils';
+export * as server from './server';
+export * as mongoDB from './data/mongodb';
