@@ -37,18 +37,16 @@
     "express": "^4.17.1",
     "handlebars": "^4.7.6",
     "jsonwebtoken": "^8.5.1",
-    "mongo-heartbeat": "^2.0.1",
-    "mongodb": "^3.6.2",
     "node-fetch": "^2.6.1",
     "nodemailer": "^6.4.13",
-    "plivo": "^4.10.0"
+    "plivo": "^4.10.0",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.8",
     "@types/jest": "^26.0.15",
     "@types/jsonwebtoken": "^8.5.0",
-    "@types/mongodb": "^3.5.31",
     "@types/node-fetch": "^2.5.7",
     "@types/nodemailer": "^6.4.0",
     "@typescript-eslint/eslint-plugin": "^4.5.0",

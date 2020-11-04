@@ -1,3 +1,8 @@
+// Copyright (c) 2020 Amirhossein Movahedi (@qolzam)
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
 import fetch from 'node-fetch';
 
 export class Recaptcha {
@@ -20,7 +25,7 @@ export class Recaptcha {
      * @param recaptchaResponse Recaptcha validate response
      * @param remoteIpAddress Request source IP address
      */
-    async verifyCaptch(recaptchaResponse: string, remoteIpAddress: string): Promise<any> {
+    async verifyCaptch(recaptchaResponse: string, remoteIpAddress: string): Promise<unknown> {
         const result = await confirm(remoteIpAddress, recaptchaResponse, this.secret);
         return result;
     }
@@ -37,9 +42,12 @@ async function check(remoteip: string, response: string, secretKey: string) {
         method: 'POST',
     });
     const parsedRecap = await resCap.json();
+    // eslint-disable-next-line no-console
     console.log('[INFO] parsedRecap ', parsedRecap);
     if (parsedRecap.success !== undefined && !parsedRecap.success) {
+        // eslint-disable-next-line no-console
         console.log('[ERROR] Captha/responseError', resCap);
+        // eslint-disable-next-line no-console
         console.log('[ERROR] Captha/responseError', parsedRecap);
         throw new Error('ServerError/ResponseCaptchaError ' + 'Failed captcha verification');
     }

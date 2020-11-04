@@ -1,3 +1,8 @@
+// Copyright (c) 2020 Amirhossein Movahedi (@qolzam)
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
 import * as handlebars from 'handlebars';
 import * as fs from 'fs';
 
@@ -11,7 +16,7 @@ const readHTMLFile = function readHTMLFile(path: string, callback: (err: Error |
     });
 };
 
-function getParsedHtml(htmlPath: string, data: any): Promise<string> {
+function getParsedHtml(htmlPath: string, data: Record<string, unknown>): Promise<string> {
     return new Promise((resolve, reject) => {
         readHTMLFile(htmlPath, (err, html) => {
             if (err) {

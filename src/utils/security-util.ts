@@ -1,4 +1,10 @@
+// Copyright (c) 2020 Amirhossein Movahedi (@qolzam)
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
 import * as jwt from 'jsonwebtoken';
+import { Claims } from '../server/server';
 
 function signJWT(
     privateKey: string,
@@ -13,10 +19,10 @@ function signJWT(
     }
 }
 
-function verifyJWT(token: string, secret: string): [string | unknown | null, Error | null] {
+function verifyJWT(token: string, secret: string): [Claims | null, Error | null] {
     try {
         const decoded = jwt.verify(token, secret);
-        return [decoded, null];
+        return [decoded as Claims, null];
     } catch (error) {
         return [null, error];
     }

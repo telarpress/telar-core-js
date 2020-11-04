@@ -1,7 +1,13 @@
+// Copyright (c) 2020 Amirhossein Movahedi (@qolzam)
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
 import config, { CoreConfig } from '../config';
 import httpUtils, { StatusCode } from '../utils/http-util';
 import secretUtils from '../utils/secret-util';
 import hmacUtils from '../utils/hmac-util';
+import logger from '../utils/log-util';
 import stringUtils from '../utils/string-util';
 import securityUtils from '../utils/security-util';
 import * as expressCore from 'express-serve-static-core';
@@ -21,6 +27,14 @@ export interface Cookies {
     sign: string;
 }
 
+export interface Claims {
+    role: string;
+    uid: string;
+    email: string;
+    avatar: string;
+    displayName: string;
+}
+
 export const XCloudSignature = 'X-Cloud-Signature';
 
 export type Handler = (r: expressCore.Request, w: expressCore.Response) => void;
@@ -33,7 +47,7 @@ export type FunctionHandlerWR = (
 
 export class Response {
     // Body the body will be written back
-    body: any | undefined;
+    body: unknown | undefined;
 
     // StatusCode needs to be populated with value such as http.StatusOK
     statusCode: number | undefined;
@@ -42,7 +56,7 @@ export class Response {
     header: http.IncomingHttpHeaders | undefined;
 
     constructor(
-        _body: any | undefined,
+        _body: unknown | undefined,
         _statusCode: number | undefined,
         _header: http.IncomingHttpHeaders | undefined,
     ) {
@@ -53,7 +67,7 @@ export class Response {
 }
 
 export class Request {
-    public body: any;
+    public body: unknown;
     public header: http.IncomingHttpHeaders;
     public queryString: qs.ParsedQs;
     public params: expressCore.ParamsDictionary;
@@ -67,7 +81,7 @@ export class Request {
     public cookieMap?: string;
 
     constructor(
-        _body: any,
+        _body: unknown,
         _header: http.IncomingHttpHeaders,
         _queryString: qs.ParsedQs,
         _params: expressCore.ParamsDictionary,
@@ -116,13 +130,14 @@ function handleParseFileRequest(r: expressCore.Request) {
 }
 
 function writeError(err: string, logErr?: Error) {
+    // eslint-disable-next-line no-console
     console.log(err);
     if (logErr) {
-        console.log(logErr);
+        logger.error(logErr);
     }
 }
 
-function parseClaim(req: Request, claims: any, protection: RouteProtection) {
+function parseClaim(req: Request, claims: Claims, protection: RouteProtection) {
     const { role } = claims;
     if (!stringUtils.isEmpty(role)) {
         req.systemRole = role;
@@ -132,7 +147,7 @@ function parseClaim(req: Request, claims: any, protection: RouteProtection) {
         return new Error('adminAccessRole');
     }
     const userId = claims.uid;
-    console.log('[INFO] UserID from claims ', userId);
+    logger.info('UserID from claims ', userId);
     if (!stringUtils.isEmpty(userId)) {
         req.userID = userId;
     }
@@ -163,12 +178,12 @@ function validateRequest(req: Request) {
 
     const xCloudSignature = req.get(XCloudSignature);
 
-    console.log('[INFO] xCloudSignature:  ', xCloudSignature);
+    logger.info('xCloudSignature:  ', xCloudSignature);
     try {
         if (
             xCloudSignature &&
             typeof xCloudSignature === 'string' &&
-            hmacUtils.validate(req.body, payloadSecret, xCloudSignature)
+            hmacUtils.validate(String(req.body), payloadSecret, xCloudSignature)
         ) {
             return null;
         }
@@ -185,6 +200,7 @@ function checkHmacPresent(req: Request) {
     if (xCloudSignature && typeof xCloudSignature === 'string' && !stringUtils.isEmpty(xCloudSignature)) {
         const validErr = validateRequest(req);
         if (validErr != null) {
+            // eslint-disable-next-line no-console
             console.log('[ERROR] Core: HMAC Error %s', validErr.Error());
 
             return [true, validErr];
@@ -215,6 +231,7 @@ function checkHmacPresent(req: Request) {
         return [true, null];
     }
 
+    // eslint-disable-next-line no-console
     console.log('[INFO] Core: HMAC is not presented.');
     return [false, null];
 }
@@ -253,12 +270,17 @@ function readCookie(
 }
 
 // parseCookie
-function parseCookie(w: expressCore.Response, cookieMap: Cookies, appConfig: CoreConfig): [any | null, Error | null] {
+function parseCookie(
+    w: expressCore.Response,
+    cookieMap: Cookies,
+    appConfig: CoreConfig,
+): [Claims | null, Error | null] {
     const keydata = appConfig.publicKey;
     const cookie = `${cookieMap.header}.${cookieMap.payload}.${cookieMap.sign}`;
     const [parsed, parseErr] = securityUtils.verifyJWT(cookie, keydata);
 
     if (parseErr != null) {
+        // eslint-disable-next-line no-console
         console.log(parseErr, cookie);
         writeError('Unable to decode cookie, please clear your cookies and sign-in again', parseErr);
         return [null, parseErr];
@@ -277,10 +299,12 @@ function checkProtection(
     if (protection === RouteProtection.RouteProtectionHMAC) {
         const [presented, hmacErr] = checkHmacPresent(req);
         if (hmacErr != null) {
+            // eslint-disable-next-line no-console
             console.log('[ERROR]invalid HMAC digest!', hmacErr);
             return new Error(`invalid HMAC digest! ${hmacErr}`);
         }
         if (!presented) {
+            // eslint-disable-next-line no-console
             console.log('[ERROR] HMAC is not presented!');
             return new Error('HMAC is not presented!');
         }
@@ -290,6 +314,7 @@ function checkProtection(
     ) {
         const [presented, hmacErr] = checkHmacPresent(req);
         if (hmacErr != null) {
+            // eslint-disable-next-line no-console
             console.log('[ERROR] Invalid HMAC digest!  ', hmacErr);
             return new Error(`Invalid HMAC digest: ${hmacErr}`);
         }
@@ -311,6 +336,10 @@ function checkProtection(
                 return new Error(`Error in reading cookie error: ${parseCookieErr}`);
             }
 
+            if (!claims) {
+                writeError('Claims is null!');
+                return new Error(`Claims is null!`);
+            }
             // Parse claim to request
             const parseErr = parseClaim(req, claims, protection);
             if (parseErr != null) {
@@ -333,6 +362,7 @@ function parseHeader(w: expressCore.Response, r: expressCore.Request, result: Re
     }
 
     if (resultErr !== null) {
+        // eslint-disable-next-line no-console
         console.log(resultErr);
         w.status(StatusCode.InternalServerError);
     } else if (result.statusCode === 0) {
@@ -370,6 +400,7 @@ function requestHandler(
 function reqWR(funcHandler: FunctionHandlerWR, protection: RouteProtection): Handler {
     const { appConfig } = config.getConfig();
     return function handler(r, w) {
+        // eslint-disable-next-line no-console
         console.log(JSON.stringify(r.headers));
         const req = handleParseRequest(r);
         // Reading cookie in protected request

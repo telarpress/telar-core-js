@@ -42,7 +42,7 @@ const hmacUtil = (() => {
     /**
      *  Pulls the Hash and Secret and verifies the message
      *
-     * @param {any} message Original message, without hashing
+     * @param {String} message Original message, without hashing
      * @param {String} secret Name of the secret to  generate
      *                        the Hash
      */

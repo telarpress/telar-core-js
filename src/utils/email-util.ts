@@ -1,3 +1,8 @@
+// Copyright (c) 2020 Amirhossein Movahedi (@qolzam)
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
 import htmlUtil from './html-util';
 
 import nodemailer from 'nodemailer';
@@ -28,7 +33,6 @@ export class Email {
      * Initialize email
      */
     initEmail(): void {
-        console.log(nodemailer.createTransport({}));
         this.mailTransport = nodemailer.createTransport({
             service: this.emailService,
             auth: {
@@ -43,7 +47,7 @@ export class Email {
      * @param tmplPath HTML template path
      * @param data Parameter for HTML template
      */
-    async sendEmail(req: EmailRequest, tmplPath: string, data: any): Promise<any> {
+    async sendEmail(req: EmailRequest, tmplPath: string, data: Record<string, unknown>): Promise<unknown> {
         try {
             const htmlToSend = await htmlUtil.getParsedHtml(tmplPath, data);
             const mailOptions = {
@@ -53,12 +57,14 @@ export class Email {
                 html: htmlToSend,
             };
             if (!this.mailTransport) {
+                // eslint-disable-next-line no-console
                 console.error('The email is nit initialize. Call initEmail() before send!');
                 throw new Error(`The email is nit initialize. Call initEmail() before send!`);
             }
             const result = await this.mailTransport.sendMail(mailOptions);
             return result;
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.error('There was an error while sending the email:', error);
             throw new Error(`There was an error while sending the email: ${error}`);
         }
