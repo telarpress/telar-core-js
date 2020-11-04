@@ -3,4 +3,5 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-export { IDataRepository, IQueryResult, IQuerySingleResult, BulkUpdateOne } from './IDataRepository';
+export { IDataRepository, IQueryResult, IQuerySingleResult, BulkUpdateOne, IRepositoryResult } from './IDataRepository';
+export { IBaseOperators, IOperators } from './IOperators';
