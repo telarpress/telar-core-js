@@ -1,6 +1,6 @@
 {
   "name": "telar-core",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Telar core in JavaScript.",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
