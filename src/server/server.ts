@@ -397,7 +397,7 @@ function requestHandler(
     w.send(result.body);
 }
 
-function reqWR(funcHandler: FunctionHandlerWR, protection: RouteProtection): Handler {
+export function reqWR(funcHandler: FunctionHandlerWR, protection: RouteProtection): Handler {
     const { appConfig } = config.getConfig();
     return function handler(r, w) {
         // eslint-disable-next-line no-console
@@ -414,7 +414,7 @@ function reqWR(funcHandler: FunctionHandlerWR, protection: RouteProtection): Han
 }
 
 // ReqFileWR request file handler with http.ResponseWriter and http.Request
-function reqFileWR(funcHandler: FunctionHandlerWR, protection: RouteProtection): Handler {
+export function reqFileWR(funcHandler: FunctionHandlerWR, protection: RouteProtection): Handler {
     const { appConfig } = config.getConfig();
     return function handler(r: expressCore.Request, w: expressCore.Response) {
         const req = handleParseFileRequest(r);
@@ -430,7 +430,7 @@ function reqFileWR(funcHandler: FunctionHandlerWR, protection: RouteProtection):
 }
 
 // OnReq request handler
-function onReq(funcHandler: FunctionHandler, protection: RouteProtection): Handler {
+export function onReq(funcHandler: FunctionHandler, protection: RouteProtection): Handler {
     return function handler(r: expressCore.Request, w: expressCore.Response): void {
         const req = handleParseRequest(r);
         requestHandler(w, r, funcHandler, req, protection);

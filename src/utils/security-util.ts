@@ -6,7 +6,7 @@
 import * as jwt from 'jsonwebtoken';
 import { Claims } from '../server/server';
 
-function signJWT(
+export function signJWT(
     privateKey: string,
     payload: string,
     expiresIn: string | number | undefined,
@@ -19,7 +19,7 @@ function signJWT(
     }
 }
 
-function verifyJWT(token: string, secret: string): [Claims | null, Error | null] {
+export function verifyJWT(token: string, secret: string): [Claims | null, Error | null] {
     try {
         const decoded = jwt.verify(token, secret);
         return [decoded as Claims, null];
@@ -27,7 +27,6 @@ function verifyJWT(token: string, secret: string): [Claims | null, Error | null]
         return [null, error];
     }
 }
-
 export default {
     signJWT,
     verifyJWT,

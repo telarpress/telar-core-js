@@ -5,7 +5,7 @@
 
 import * as express from 'express';
 
-function getIPAddress(request: express.Request): string {
+export function getIPAddress(request: express.Request): string {
     let ip =
         request.headers['x-forwarded-for'] ||
         request.connection.remoteAddress ||
@@ -69,7 +69,6 @@ export const StatusCode = {
     UpgradeRequired: 426,
     UseProxy: 305,
 };
-
 export default {
     getIPAddress,
 };

@@ -32,14 +32,12 @@ export interface CoreConfig {
 }
 let config: CoreConfig;
 
-export default {
-    getConfig(): { appConfig: CoreConfig } {
-        return { appConfig: { ...config } };
-    },
-    setConfig(_config: CoreConfig): void {
-        config = _config;
-    },
-};
+export function getConfig(): { appConfig: CoreConfig } {
+    return { appConfig: { ...config } };
+}
+export function setConfig(_config: CoreConfig): void {
+    config = _config;
+}
 
 export enum DBType {
     DB_INMEMORY = 'inmemory',
@@ -47,3 +45,8 @@ export enum DBType {
     DB_SQLITE = 'sqlite',
     DB_MYSQL = 'mysql',
 }
+
+export default {
+    getConfig,
+    setConfig,
+};

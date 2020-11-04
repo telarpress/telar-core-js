@@ -16,7 +16,7 @@ const readHTMLFile = function readHTMLFile(path: string, callback: (err: Error |
     });
 };
 
-function getParsedHtml(htmlPath: string, data: Record<string, unknown>): Promise<string> {
+export function getParsedHtml(htmlPath: string, data: Record<string, unknown>): Promise<string> {
     return new Promise((resolve, reject) => {
         readHTMLFile(htmlPath, (err, html) => {
             if (err) {

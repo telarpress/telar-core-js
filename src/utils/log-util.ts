@@ -3,7 +3,7 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-export default class LogUtil {
+export class LogUtil {
     static log(message?: unknown, ...optionalParams: unknown[]): void {
         // eslint-disable-next-line no-console
         console.log(message, ...optionalParams);
@@ -21,3 +21,5 @@ export default class LogUtil {
         console.error('[ERROR] ', message, ...optionalParams);
     }
 }
+
+export default LogUtil;
