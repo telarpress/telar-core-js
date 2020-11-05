@@ -240,21 +240,21 @@ function checkHmacPresent(req: Request) {
 function readCookie(
     w: expressCore.Response,
     r: expressCore.Request,
-    appConfig: CoreConfig,
+    global: CoreConfig,
 ): [Cookies | null, Error | null] {
-    const cookieHeader = r.cookies[appConfig.headerCookieName];
+    const cookieHeader = r.cookies[global.headerCookieName];
     if (stringUtils.isEmpty(cookieHeader)) {
         writeError('Cookie Header not found.');
         return [null, new Error('Cookie Header not found.')];
     }
 
-    const cookiePayload = r.cookies[appConfig.payloadCookieName];
+    const cookiePayload = r.cookies[global.payloadCookieName];
     if (stringUtils.isEmpty(cookiePayload)) {
         writeError('Cookie Payload not found.');
         return [null, new Error('Cookie Payload not found.')];
     }
 
-    const cookieSignature = r.cookies[appConfig.signatureCookieName];
+    const cookieSignature = r.cookies[global.signatureCookieName];
     if (stringUtils.isEmpty(cookieSignature)) {
         writeError('Cookie Signature not found.');
         return [null, new Error('Cookie Signature not found.')];
@@ -270,12 +270,8 @@ function readCookie(
 }
 
 // parseCookie
-function parseCookie(
-    w: expressCore.Response,
-    cookieMap: Cookies,
-    appConfig: CoreConfig,
-): [Claims | null, Error | null] {
-    const keydata = appConfig.publicKey;
+function parseCookie(w: expressCore.Response, cookieMap: Cookies, global: CoreConfig): [Claims | null, Error | null] {
+    const keydata = global.publicKey;
     const cookie = `${cookieMap.header}.${cookieMap.payload}.${cookieMap.sign}`;
     const [parsed, parseErr] = securityUtils.verifyJWT(cookie, keydata);
 
@@ -293,7 +289,7 @@ function checkProtection(
     w: expressCore.Response,
     r: expressCore.Request,
     req: Request,
-    appConfig: CoreConfig,
+    global: CoreConfig,
     protection: RouteProtection,
 ) {
     if (protection === RouteProtection.RouteProtectionHMAC) {
@@ -320,7 +316,7 @@ function checkProtection(
         }
         if (!presented) {
             // Read cookie
-            const [cookieMap, cookieErr] = readCookie(w, r, appConfig);
+            const [cookieMap, cookieErr] = readCookie(w, r, global);
             if (cookieErr != null || cookieMap === null) {
                 writeError(
                     'Internal Error happened in reading cookie!',
@@ -330,7 +326,7 @@ function checkProtection(
             }
 
             // Parse cookie to claim
-            const [claims, parseCookieErr] = parseCookie(w, cookieMap, appConfig);
+            const [claims, parseCookieErr] = parseCookie(w, cookieMap, global);
             if (parseCookieErr != null) {
                 writeError('Error in reading cookie error: ', parseCookieErr);
                 return new Error(`Error in reading cookie error: ${parseCookieErr}`);
@@ -380,11 +376,11 @@ function requestHandler(
     req: Request,
     protection: RouteProtection,
 ): void {
-    const { appConfig } = config.getConfig();
+    const { global } = config.getConfig();
 
     // Reading cookie in protected request
     if (protection !== RouteProtection.RouteProtectionPublic) {
-        const err = checkProtection(w, r, req, appConfig, protection);
+        const err = checkProtection(w, r, req, global, protection);
         if (err !== null) {
             w.status(StatusCode.Unauthorized);
             w.send(err);
@@ -398,14 +394,14 @@ function requestHandler(
 }
 
 export function reqWR(funcHandler: FunctionHandlerWR, protection: RouteProtection): Handler {
-    const { appConfig } = config.getConfig();
+    const { global } = config.getConfig();
     return function handler(r, w) {
         // eslint-disable-next-line no-console
         console.log(JSON.stringify(r.headers));
         const req = handleParseRequest(r);
         // Reading cookie in protected request
         if (protection !== RouteProtection.RouteProtectionPublic) {
-            checkProtection(w, r, req, appConfig, protection);
+            checkProtection(w, r, req, global, protection);
         }
         const [result, resultErr] = funcHandler(w, r, req);
         parseHeader(w, r, result, resultErr);
@@ -415,13 +411,13 @@ export function reqWR(funcHandler: FunctionHandlerWR, protection: RouteProtectio
 
 // ReqFileWR request file handler with http.ResponseWriter and http.Request
 export function reqFileWR(funcHandler: FunctionHandlerWR, protection: RouteProtection): Handler {
-    const { appConfig } = config.getConfig();
+    const { global } = config.getConfig();
     return function handler(r: expressCore.Request, w: expressCore.Response) {
         const req = handleParseFileRequest(r);
 
         // Reading cookie in protected request
         if (protection !== RouteProtection.RouteProtectionPublic) {
-            checkProtection(w, r, req, appConfig, protection);
+            checkProtection(w, r, req, global, protection);
         }
         const [result, resultErr] = funcHandler(w, r, req);
         parseHeader(w, r, result, resultErr);

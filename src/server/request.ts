@@ -7,8 +7,8 @@ import fetch, { Response } from 'node-fetch';
 import { getConfig } from '../config';
 
 export function call(url: string, data: unknown): Promise<Response> {
-    const { appConfig } = getConfig();
-    return fetch(`${appConfig.gateway}/${url}`, {
+    const { global } = getConfig();
+    return fetch(`${global.gateway}/${url}`, {
         method: 'post',
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'application/json' },

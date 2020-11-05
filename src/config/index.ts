@@ -30,13 +30,26 @@ export interface CoreConfig {
     dBType: string;
     queryPrettyURL: boolean;
 }
-let config: CoreConfig;
 
-export function getConfig(): { appConfig: CoreConfig } {
-    return { appConfig: { ...config } };
+export interface ConfigStore {
+    global: CoreConfig;
+    app: unknown;
 }
-export function setConfig(_config: CoreConfig): void {
-    config = _config;
+
+let configStore: ConfigStore;
+
+/**
+ * Get configuration
+ */
+export function getConfig(): ConfigStore {
+    return configStore;
+}
+/**
+ * Set configuration
+ * @param conf
+ */
+export function setConfig(conf: ConfigStore): void {
+    configStore = conf;
 }
 
 export enum DBType {
