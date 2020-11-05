@@ -8,3 +8,5 @@ export * as recaptchaUtil from './recaptcha-util';
 export * as secretUtil from './secret-util';
 export * as securityUtil from './security-util';
 export * as stringUtil from './string-util';
+import LogUtil from './log-util';
+export { LogUtil };
