@@ -4,7 +4,7 @@ cache:
   directories:
     - ~/.npm
     - node_modules
-    
+
 node_js:
   - '12'
 
@@ -28,9 +28,9 @@ jobs:
       skip_cleanup: true
     - stage: test
       script: 
+        - sudo codecov
         - npm run lint
         - npm test
-        - codecov
       skip_cleanup: true
     - stage: build
       script:
