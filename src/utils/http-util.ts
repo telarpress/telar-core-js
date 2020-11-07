@@ -4,16 +4,16 @@
 // https://opensource.org/licenses/MIT
 
 import * as express from 'express';
+import requestIP from 'request-ip';
+import log from './log-util';
 
-export function getIPAddress(request: express.Request): string {
-    let ip =
-        request.headers['x-forwarded-for'] ||
-        request.connection.remoteAddress ||
-        request.socket.remoteAddress ||
-        (request.connection as any).socket.remoteAddress;
-    [ip] = ip.split(',');
-    ip = ip.split(':').slice(-1); // in case the ip returned in a format: "::ffff:146.xxx.xxx.xxx"
-    return ip;
+export function getIPAddress(req: express.Request): string {
+    const ip = requestIP.getClientIp(req);
+    if (ip) {
+        return ip;
+    }
+    log.error('Could not find client IP address from request ', req);
+    return '';
 }
 
 /**

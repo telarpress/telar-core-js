@@ -6,8 +6,8 @@
 export interface CoreConfig {
     server: string;
     gateway: string;
-    mongoDBHost: string;
-    mongoPassword: string;
+    dbHost: string;
+    dbPassword: string;
     database: string;
     publicKey: string;
     recaptchaKey: string;
