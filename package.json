@@ -9,12 +9,34 @@
     "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint:fix": "eslint . --ext .ts --fix"
+    "lint:fix": "eslint . --ext .ts --fix",
+    "commit": "npm run git-cz"
   },
-  "publishConfig": { "access": "public", "branches": ["master"] },
+  "publishConfig": {
+    "access": "public",
+    "branches": [
+      "master"
+    ]
+  },
   "pre-commit": [
     "lint"
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/prompt"
+    }
+  },
   "release": {
     "prepare": [
       {
@@ -25,7 +47,8 @@
         {
           "assets": [
             "CHANGELOG.md"
-          ]
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }
       ]
     ]
@@ -60,6 +83,9 @@
     "uuid": "^8.3.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@commitlint/prompt": "^11.0.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/jest": "^26.0.15",
     "@types/jsonwebtoken": "^8.5.0",
@@ -67,9 +93,11 @@
     "@types/request-ip": "0.0.35",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
+    "commitizen": "^4.2.2",
     "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.13.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
     "jest": "^26.6.1",
     "nodemailer-mock": "^1.5.3",
     "prettier": "^2.1.2",
