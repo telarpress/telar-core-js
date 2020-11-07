@@ -13,29 +13,24 @@ os:
 
 
 stages:
-  - install
   - test
   - build
   - name: deploy
     if: branch = master
 
+install:
+  - npm install -g codecov
+  - npm install
+
 jobs:
   include:
-    - stage: install
-      script: 
-        - npm install -g codecov
-        - npm install
-      skip_cleanup: true
     - stage: test
-      script: 
-        - sudo codecov
+      script:
         - npm run lint
         - npm test
-      skip_cleanup: true
     - stage: build
       script:
       - npm run build
-      skip_cleanup: true
     - stage: deploy
       script:
       - npm install -g @semantic-release/changelog @semantic-release/git
