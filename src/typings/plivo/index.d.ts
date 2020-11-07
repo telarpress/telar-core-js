@@ -8,12 +8,7 @@ declare module 'plivo' {
     }
 
     export class Client implements PlivoClient {
-        authId: string;
-        authToken: string;
-        constructor(_authId: string, _authToken: string) {
-            this.authId = _authId;
-            this.authToken = _authToken;
-        }
+        constructor(authId: string, authToken: string);
         messages: PlivoMessages;
     }
 }
