@@ -1,3 +1,4 @@
+sudo: required
 language: node_js
 cache:
   directories:
@@ -7,6 +8,12 @@ node_js:
   - '14'
   - '12'
   - '10'
+stages:
+  - install
+  - test
+  - build
+  - name: deploy
+    if: branch = master
 
 jobs:
   include:
@@ -21,9 +28,11 @@ jobs:
         - npm test
         - codecov
       skip_cleanup: true
-    - stage: Build & publish
+    - stage: build
       script:
       - npm run build
+      skip_cleanup: true
+    - stage: deploy
+      script:
       - npm install -g @semantic-release/changelog @semantic-release/git
       - npx semantic-release
-      if: branch = master
