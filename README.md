@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://telar.press/" rel="noopener" target="_blank"><img width="150" src="https://raw.githubusercontent.com/red-gold/red-gold-web/master/website/static/img/logos/telar-social-logo/profile.png" alt="Material-UI logo"></a></p>
+  <a href="https://telar.dev/" rel="noopener" target="_blank"><img width="150" src="https://raw.githubusercontent.com/red-gold/red-gold-web/master/website/static/img/logos/telar-social-logo/profile.png" alt="Telar Core"></a></p>
 </p>
 
 <h1 align="center">Telar Core in TypeScript</h1>
