@@ -24,12 +24,10 @@ jobs:
     - stage: install
       script: 
         - npm install
-        - npm install codecov
     - stage: test
       script: 
         - npm run lint
         - npm test
-        - npm run coverage
     - stage: build
       script:
       - npm run build
