@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint:fix": "eslint . --ext .ts --fix",
+    "coverage": "codecov",
     "commit": "git-cz"
   },
   "publishConfig": {

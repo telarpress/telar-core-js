@@ -13,25 +13,27 @@ os:
 
 
 stages:
+  - install
   - test
   - build
   - name: deploy
     if: branch = master
 
-install:
-  - npm install -g codecov
-  - npm install
-
 jobs:
   include:
+    - stage: install
+      script: 
+        - npm install
+        - npm install codecov
     - stage: test
-      script:
+      script: 
         - npm run lint
         - npm test
+        - npm run coverage
     - stage: build
       script:
       - npm run build
     - stage: deploy
       script:
-      - npm install -g @semantic-release/changelog @semantic-release/git
+      - npm install @semantic-release/changelog @semantic-release/git
       - npx semantic-release
