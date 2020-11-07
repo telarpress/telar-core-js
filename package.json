@@ -1,6 +1,6 @@
 {
   "name": "telar-core",
-  "version": "1.0.19",
+  "version": "0.0.0-development",
   "description": "Telar core in JavaScript.",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
@@ -9,16 +9,30 @@
     "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint:fix": "eslint . --ext .ts --fix",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
-    "version": "npm run format && git add -A src",
-    "preversion": "npm run lint",
-    "postversion": "git push && git push --tags"
+    "lint:fix": "eslint . --ext .ts --fix"
+  },
+  "publishConfig": { "access": "public", "branches": ["master"] },
+  "pre-commit": [
+    "lint"
+  ],
+  "release": {
+    "prepare": [
+      {
+        "path": "@semantic-release/changelog"
+      },
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md"
+          ]
+        }
+      ]
+    ]
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/telarpress/telar-core-js.git"
+    "url": "https://github.com/telarpress/telar-core-js.git"
   },
   "keywords": [
     "telar",
