@@ -1,3 +1,10 @@
+## [1.0.22](https://github.com/telarpress/telar-core-js/compare/v1.0.21...v1.0.22) (2020-11-08)
+
+
+### Bug Fixes
+
+* **travis:** add build command ([5c082ed](https://github.com/telarpress/telar-core-js/commit/5c082ed3dd0822c5a92f1c81bc6cb7f574a3f5a0))
+
 ## [1.0.21](https://github.com/telarpress/telar-core-js/compare/v1.0.20...v1.0.21) (2020-11-08)
 
 
