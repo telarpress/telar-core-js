@@ -11,27 +11,13 @@ node_js:
 os:
   - linux
 
-
-stages:
-  - install
-  - test
-  - build
-  - name: deploy
-    if: branch = master
-
 jobs:
   include:
-    - stage: install
-      script: 
-        - npm install
-    - stage: test
-      script: 
+    - stage: release
+      script:
         - npm run lint
         - npm test
-    - stage: build
-      script:
-      - npm run build
-    - stage: deploy
-      script:
-      - npm install @semantic-release/changelog @semantic-release/git
-      - npx semantic-release
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
+        - npm install @semantic-release/changelog @semantic-release/git
+        - npx semantic-release
