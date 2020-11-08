@@ -1,3 +1,10 @@
+## [1.0.23](https://github.com/telarpress/telar-core-js/compare/v1.0.22...v1.0.23) (2020-11-08)
+
+
+### Bug Fixes
+
+* **server:** prevent error for requeired config properties ([31a5c56](https://github.com/telarpress/telar-core-js/commit/31a5c56971d5f7fa5089d0ab351c834e1de67abd))
+
 ## [1.0.22](https://github.com/telarpress/telar-core-js/compare/v1.0.21...v1.0.22) (2020-11-08)
 
 
