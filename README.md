@@ -8,6 +8,11 @@
  Telar Core including basic tools for Telar projects. Providing base packages for database, handle server request/response , email, phone, re-captcha, security and other useful functionalitis for Telar projects.
 </div>
 
+![Travis (.org)](https://img.shields.io/travis/telarpress/telar-core-js)
+[![codecov](https://codecov.io/gh/telarpress/telar-core-js/branch/master/graph/badge.svg)](https://codecov.io/gh/telarpress/telar-core-js)
+![npm](https://img.shields.io/npm/v/telar-core)
+![NPM](https://img.shields.io/npm/l/telar-core)
+
 ## Installation
 
 Telar core is available on npm. You can install it using:
