@@ -38,12 +38,12 @@ export interface Claims {
 export const XCloudSignature = 'X-Cloud-Signature';
 
 export type Handler = (r: expressCore.Request, w: expressCore.Response) => void;
-export type FunctionHandler = (req: Request) => [Response, Error, null];
+export type FunctionHandler = (req: Request) => [Response, Error | null];
 export type FunctionHandlerWR = (
     w: expressCore.Response,
     r: expressCore.Request,
     req: Request,
-) => [Response, Error, null];
+) => [Response, Error | null];
 
 export class Response {
     // Body the body will be written back
@@ -362,7 +362,7 @@ function checkProtection(
     return null;
 }
 
-function parseHeader(w: expressCore.Response, r: expressCore.Request, result: Response, resultErr: Error) {
+function parseHeader(w: expressCore.Response, r: expressCore.Request, result: Response, resultErr: Error | null) {
     if (result.header) {
         const headerKeys = Object.keys(result.header);
         for (let index = 0; index < headerKeys.length; index += 1) {
