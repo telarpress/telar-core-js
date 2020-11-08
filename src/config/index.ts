@@ -4,36 +4,36 @@
 // https://opensource.org/licenses/MIT
 
 export interface CoreConfig {
-    server: string;
-    gateway: string;
-    dbHost: string;
-    dbPassword: string;
-    database: string;
-    publicKey: string;
-    recaptchaKey: string;
-    recaptchaSiteKey: string;
-    headerCookieName: string;
-    payloadCookieName: string;
-    signatureCookieName: string;
-    smtpEmail: string;
-    refEmail: string;
-    refEmailPass: string;
-    origin: string;
-    privateKey: string;
-    appName: string;
-    phoneSourceNumber: string;
-    phoneAuthToken: string;
-    phoneAuthId: string;
-    orgName: string;
-    orgAvatar: string;
-    webDomain: string;
-    dBType: string;
-    queryPrettyURL: boolean;
+    server?: string;
+    gateway?: string;
+    dbHost?: string;
+    dbPassword?: string;
+    database?: string;
+    publicKey?: string;
+    recaptchaKey?: string;
+    recaptchaSiteKey?: string;
+    headerCookieName?: string;
+    payloadCookieName?: string;
+    signatureCookieName?: string;
+    smtpEmail?: string;
+    refEmail?: string;
+    refEmailPass?: string;
+    origin?: string;
+    privateKey?: string;
+    appName?: string;
+    phoneSourceNumber?: string;
+    phoneAuthToken?: string;
+    phoneAuthId?: string;
+    orgName?: string;
+    orgAvatar?: string;
+    webDomain?: string;
+    dBType?: string;
+    queryPrettyURL?: boolean;
 }
 
 export interface ConfigStore {
-    global: CoreConfig;
-    app: unknown;
+    global?: CoreConfig;
+    app?: unknown;
 }
 
 let configStore: ConfigStore;
