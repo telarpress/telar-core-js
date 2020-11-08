@@ -8,6 +8,9 @@ import { getConfig } from '../config';
 
 export function call(url: string, data: unknown): Promise<Response> {
     const { global } = getConfig();
+    if (!global) {
+        throw new Error('Global config is required');
+    }
     return fetch(`${global.gateway}/${url}`, {
         method: 'post',
         body: JSON.stringify(data),

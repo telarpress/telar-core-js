@@ -7,7 +7,7 @@ import config, { CoreConfig } from '../config';
 import httpUtils, { StatusCode } from '../utils/http-util';
 import secretUtils from '../utils/secret-util';
 import hmacUtils from '../utils/hmac-util';
-import logger from '../utils/log-util';
+import log from '../utils/log-util';
 import stringUtils from '../utils/string-util';
 import securityUtils from '../utils/security-util';
 import * as expressCore from 'express-serve-static-core';
@@ -133,7 +133,7 @@ function writeError(err: string, logErr?: Error) {
     // eslint-disable-next-line no-console
     console.log(err);
     if (logErr) {
-        logger.error(logErr);
+        log.error(logErr);
     }
 }
 
@@ -147,7 +147,7 @@ function parseClaim(req: Request, claims: Claims, protection: RouteProtection) {
         return new Error('adminAccessRole');
     }
     const userId = claims.uid;
-    logger.info('UserID from claims ', userId);
+    log.info('UserID from claims ', userId);
     if (!stringUtils.isEmpty(userId)) {
         req.userID = userId;
     }
@@ -178,7 +178,7 @@ function validateRequest(req: Request) {
 
     const xCloudSignature = req.get(XCloudSignature);
 
-    logger.info('xCloudSignature:  ', xCloudSignature);
+    log.info('xCloudSignature:  ', xCloudSignature);
     try {
         if (
             xCloudSignature &&
@@ -242,18 +242,30 @@ function readCookie(
     r: expressCore.Request,
     global: CoreConfig,
 ): [Cookies | null, Error | null] {
+    if (!global) {
+        throw new Error('Global config is required');
+    }
+    if (!global.headerCookieName) {
+        throw new Error('[headerCookieName] is not apeared in config file');
+    }
     const cookieHeader = r.cookies[global.headerCookieName];
     if (stringUtils.isEmpty(cookieHeader)) {
         writeError('Cookie Header not found.');
         return [null, new Error('Cookie Header not found.')];
     }
 
+    if (!global.payloadCookieName) {
+        throw new Error('[payloadCookieName] is not apeared in config file');
+    }
     const cookiePayload = r.cookies[global.payloadCookieName];
     if (stringUtils.isEmpty(cookiePayload)) {
         writeError('Cookie Payload not found.');
         return [null, new Error('Cookie Payload not found.')];
     }
 
+    if (!global.signatureCookieName) {
+        throw new Error('[signatureCookieName] is not apeared in config file');
+    }
     const cookieSignature = r.cookies[global.signatureCookieName];
     if (stringUtils.isEmpty(cookieSignature)) {
         writeError('Cookie Signature not found.');
@@ -271,6 +283,9 @@ function readCookie(
 
 // parseCookie
 function parseCookie(w: expressCore.Response, cookieMap: Cookies, global: CoreConfig): [Claims | null, Error | null] {
+    if (!global.publicKey) {
+        throw new Error('[publicKey] is not apeared in config file');
+    }
     const keydata = global.publicKey;
     const cookie = `${cookieMap.header}.${cookieMap.payload}.${cookieMap.sign}`;
     const [parsed, parseErr] = securityUtils.verifyJWT(cookie, keydata);
@@ -377,7 +392,9 @@ function requestHandler(
     protection: RouteProtection,
 ): void {
     const { global } = config.getConfig();
-
+    if (!global) {
+        throw new Error('Global config is required');
+    }
     // Reading cookie in protected request
     if (protection !== RouteProtection.RouteProtectionPublic) {
         const err = checkProtection(w, r, req, global, protection);
@@ -396,8 +413,10 @@ function requestHandler(
 export function reqWR(funcHandler: FunctionHandlerWR, protection: RouteProtection): Handler {
     const { global } = config.getConfig();
     return function handler(r, w) {
-        // eslint-disable-next-line no-console
-        console.log(JSON.stringify(r.headers));
+        if (!global) {
+            throw new Error('Global config is required');
+        }
+        log.info(JSON.stringify(r.headers));
         const req = handleParseRequest(r);
         // Reading cookie in protected request
         if (protection !== RouteProtection.RouteProtectionPublic) {
@@ -413,8 +432,10 @@ export function reqWR(funcHandler: FunctionHandlerWR, protection: RouteProtectio
 export function reqFileWR(funcHandler: FunctionHandlerWR, protection: RouteProtection): Handler {
     const { global } = config.getConfig();
     return function handler(r: expressCore.Request, w: expressCore.Response) {
+        if (!global) {
+            throw new Error('Global config is required');
+        }
         const req = handleParseFileRequest(r);
-
         // Reading cookie in protected request
         if (protection !== RouteProtection.RouteProtectionPublic) {
             checkProtection(w, r, req, global, protection);
