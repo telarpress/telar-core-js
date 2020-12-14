@@ -1,5 +1,5 @@
 {
-  "name": "telar-core",
+  "name": "@telar/core",
   "version": "0.0.0-dev",
   "description": "Telar core in JavaScript.",
   "main": "lib/cjs/index.js",
