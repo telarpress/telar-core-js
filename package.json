@@ -2,8 +2,8 @@
   "name": "telar-core",
   "version": "0.0.0-development",
   "description": "Telar core in JavaScript.",
-  "main": "./lib/cjs/index.js",
-  "module": "./lib/esm/index.js",
+  "main": "lib/cjs/index.js",
+  "module": "lib/index.js",
   "scripts": {
     "test": "jest --config jestconfig.json --coverage --maxWorkers=10 --detectOpenHandles --forceExit",
     "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
@@ -47,6 +47,9 @@
       {
         "path": "@semantic-release/changelog"
       },
+      ["@semantic-release/npm", {
+        "pkgRoot": "lib"
+      }],
       [
         "@semantic-release/git",
         {
