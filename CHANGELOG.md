@@ -1,3 +1,13 @@
+## [1.1.2](https://github.com/telarpress/telar-core-js/compare/v1.1.1...v1.1.2) (2020-12-14)
+
+
+### Bug Fixes
+
+* **ci:** change version for package.json ([e90f1e5](https://github.com/telarpress/telar-core-js/commit/e90f1e5bfe6c637f5fad638280cb25020f5230a8))
+* **ci:** install packages ([0bde63a](https://github.com/telarpress/telar-core-js/commit/0bde63ac7109242fddd9a22b8dbb723c84874e59))
+* **ci:** install packages global ([f3a883d](https://github.com/telarpress/telar-core-js/commit/f3a883ddab7d4277789cbe46b65fb07c43984ec2))
+* **ci:** sync package.json with package-lock.json ([176db2a](https://github.com/telarpress/telar-core-js/commit/176db2a5e419e76a84fb6cd6ef25c288039b5da3))
+
 ## [1.1.1](https://github.com/telarpress/telar-core-js/compare/v1.1.0...v1.1.1) (2020-12-14)
 
 
