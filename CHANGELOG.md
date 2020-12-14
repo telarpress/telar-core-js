@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/telarpress/telar-core-js/compare/v1.0.24...v1.1.0) (2020-12-14)
+
+
+### Features
+
+* add modular support using Koa ([1f3ec12](https://github.com/telarpress/telar-core-js/commit/1f3ec121e9c679aa186a649ee9b0a4933dc416a4))
+
 ## [1.0.24](https://github.com/telarpress/telar-core-js/compare/v1.0.23...v1.0.24) (2020-11-08)
 
 
