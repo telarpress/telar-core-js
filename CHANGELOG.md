@@ -1,3 +1,14 @@
+## [1.1.1](https://github.com/telarpress/telar-core-js/compare/v1.1.0...v1.1.1) (2020-12-14)
+
+
+### Bug Fixes
+
+* **ci:** add @semantic-release/exec package ([6b799f1](https://github.com/telarpress/telar-core-js/commit/6b799f17bfd12ca8551d7130b6c469aa72cbabf5))
+* **ci:** add replace-json-property  package ([cfd8866](https://github.com/telarpress/telar-core-js/commit/cfd8866e82ec48b5351fad6ba0300e1be0703e39))
+* **ci:** copy package.json to lib ([7c13437](https://github.com/telarpress/telar-core-js/commit/7c134370e17607f2460887e24372438def3408c0))
+* access module from root ([52cae7b](https://github.com/telarpress/telar-core-js/commit/52cae7bad3756023203ed3c91dfd7fd9a62d6b7a))
+* access module from root ([269e11b](https://github.com/telarpress/telar-core-js/commit/269e11bb046f6441f35eec23ae4bfb29c4bbbd6e))
+
 # [1.1.0](https://github.com/telarpress/telar-core-js/compare/v1.0.24...v1.1.0) (2020-12-14)
 
 
