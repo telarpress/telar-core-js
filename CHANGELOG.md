@@ -1,3 +1,10 @@
+## [1.0.24](https://github.com/telarpress/telar-core-js/compare/v1.0.23...v1.0.24) (2020-11-08)
+
+
+### Bug Fixes
+
+* **server:** export the required tools ([55d556d](https://github.com/telarpress/telar-core-js/commit/55d556ddaa358988fe0d867c399c5027e3438691))
+
 ## [1.0.23](https://github.com/telarpress/telar-core-js/compare/v1.0.22...v1.0.23) (2020-11-08)
 
 
