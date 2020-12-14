@@ -20,5 +20,5 @@ jobs:
         - npm run build
       after_success:
         - bash <(curl -s https://codecov.io/bash)
-        - npm install @semantic-release/changelog @semantic-release/git
+        - npm install @semantic-release/changelog @semantic-release/git @semantic-release/exec
         - npx semantic-release
