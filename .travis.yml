@@ -11,6 +11,9 @@ node_js:
 os:
   - linux
 
+before_install:
+- npm install -g @semantic-release/changelog @semantic-release/git @semantic-release/exec
+
 jobs:
   include:
     - stage: release
@@ -20,5 +23,4 @@ jobs:
         - npm run build
       after_success:
         - bash <(curl -s https://codecov.io/bash)
-        - npm install @semantic-release/changelog @semantic-release/git @semantic-release/exec
         - npx semantic-release
