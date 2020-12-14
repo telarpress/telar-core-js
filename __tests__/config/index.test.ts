@@ -1,4 +1,4 @@
-import config, { ConfigStore } from '../../config';
+import config, { ConfigStore } from '../../src/config';
 
 describe('Configuration', () => {
     test('Should set the config', () => {

@@ -1,4 +1,4 @@
-import errorUtil from '../../utils/error-util';
+import errorUtil from '../../src/utils/error-util';
 
 describe('Error utility', () => {
     test('Will return marshal error', () => {

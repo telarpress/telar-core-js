@@ -14,7 +14,10 @@
     "plugin:prettier/recommended"
     ],
     "rules": { 
-      "no-console": 1
+      "no-console": 1,
+      "@typescript-eslint/ban-types": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off"
     }
 }
   

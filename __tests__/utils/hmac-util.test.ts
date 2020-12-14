@@ -1,4 +1,4 @@
-import hmacUtil from '../../utils/hmac-util';
+import hmacUtil from '../../src/utils/hmac-util';
 
 describe('Error utility', () => {
     test('Should verify the data', async () => {
