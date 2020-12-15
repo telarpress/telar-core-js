@@ -1,3 +1,11 @@
+## [1.1.6](https://github.com/telarpress/telar-core-js/compare/v1.1.5...v1.1.6) (2020-12-15)
+
+
+### Bug Fixes
+
+* **ci:** copy dist content in root ([5a15782](https://github.com/telarpress/telar-core-js/commit/5a15782d70c5f9ca0e5afa64f696b08f2b9228f2))
+* **ci:** missing package.json in root ([62ec70f](https://github.com/telarpress/telar-core-js/commit/62ec70fb4ae984407b5e3d3a7b4898406bab0b30))
+
 ## [1.1.5](https://github.com/telarpress/telar-core-js/compare/v1.1.4...v1.1.5) (2020-12-15)
 
 
