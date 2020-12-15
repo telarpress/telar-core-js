@@ -1,13 +1,14 @@
 {
   "name": "@telar/core",
-  "version": "1.1.2",
+  "version": "0.0.0-development",
   "description": "Telar core in JavaScript.",
   "main": "cjs/index.js",
   "module": "index.js",
   "scripts": {
     "test": "jest --config jestconfig.json --coverage --maxWorkers=10 --detectOpenHandles --forceExit",
     "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
-    "postbuild": "cp package.json dist/ && cp README.md dist/",
+    "prepublishOnly": "cp -r ./dist/* . && rm -rf ./dist",
+    "postpublish": "git clean -fd",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint:fix": "eslint . --ext .ts --fix",

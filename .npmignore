@@ -4,3 +4,9 @@ tsconfig-cjs.json
 .eslintignore
 .prettierrc.js
 .travis.yml
+__tests__
+.vscode
+coverage
+playground
+.eslintrc
+jestconfig.json
