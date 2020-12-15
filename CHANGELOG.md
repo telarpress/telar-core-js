@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/telarpress/telar-core-js/compare/v1.1.3...v1.1.4) (2020-12-14)
+
+
+### Bug Fixes
+
+* **ci:** install packages ([6caae4f](https://github.com/telarpress/telar-core-js/commit/6caae4f9c37b28a68e26234b8bed80a7776d5055))
+
 ## [1.1.3](https://github.com/telarpress/telar-core-js/compare/v1.1.2...v1.1.3) (2020-12-14)
 
 
