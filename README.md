@@ -4,8 +4,8 @@
 
 ![Travis (.org)](https://img.shields.io/travis/telarpress/telar-core-js)
 [![codecov](https://codecov.io/gh/telarpress/telar-core-js/branch/master/graph/badge.svg)](https://codecov.io/gh/telarpress/telar-core-js)
-![npm](https://img.shields.io/npm/v/telar-core)
-![NPM](https://img.shields.io/npm/l/telar-core)
+![npm](https://img.shields.io/npm/v/@telar/core)
+![NPM](https://img.shields.io/npm/l/@telar/core)
 
 <h1 align="center">Telar Core in TypeScript</h1>
 
@@ -18,9 +18,9 @@
 Telar core is available on npm. You can install it using:
 
 ```sh
-npm install telar-core
+npm install @telar/core
 #or
-yarn add telar-core
+yarn add @telar/core
 ```
 
 ## Community
