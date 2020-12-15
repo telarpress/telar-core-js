@@ -3,7 +3,7 @@
         "target": "ES2015",
         "module": "ES2020",
         "declaration": true,
-        "outDir": "./dist",
+        "outDir": "./dist/esm",
         "strict": true,
         "esModuleInterop": true,
         "moduleResolution": "node",

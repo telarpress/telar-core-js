@@ -2,8 +2,8 @@
   "name": "@telar/core",
   "version": "0.0.0-development",
   "description": "Telar core in JavaScript.",
-  "main": "cjs/index.js",
-  "module": "index.js",
+  "main": "index.js",
+  "module": "esm/index.js",
   "scripts": {
     "test": "jest --config jestconfig.json --coverage --maxWorkers=10 --detectOpenHandles --forceExit",
     "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
