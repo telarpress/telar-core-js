@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/telarpress/telar-core-js/compare/v1.1.6...v1.1.7) (2020-12-15)
+
+
+### Bug Fixes
+
+* remove extensible class export ([976bac9](https://github.com/telarpress/telar-core-js/commit/976bac980f962d74c0f55909c1051daa0eba2267))
+
 ## [1.1.6](https://github.com/telarpress/telar-core-js/compare/v1.1.5...v1.1.6) (2020-12-15)
 
 
