@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/telarpress/telar-core-js/compare/v1.1.8...v1.2.0) (2020-12-24)
+
+
+### Features
+
+* add shared properties into ServiceCollection ([4b7bfc4](https://github.com/telarpress/telar-core-js/commit/4b7bfc4814dbf0b8a218993b51a6c7d90a378229))
+
 ## [1.1.8](https://github.com/telarpress/telar-core-js/compare/v1.1.7...v1.1.8) (2020-12-15)
 
 
