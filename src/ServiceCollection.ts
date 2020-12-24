@@ -2,10 +2,12 @@ import { interfaces, ContainerModule, AsyncContainerModule, MetadataReader, Cont
 import { IServiceCollection } from './IServiceCollection';
 
 export class ServiceCollection extends IServiceCollection {
+    properties: Record<string, any>;
     private container: Container;
-    constructor(container: Container) {
+    constructor(properties: Record<string, any>, container: Container) {
         super();
         this.container = container;
+        this.properties = properties;
     }
 
     bind<T>(serviceIdentifier: interfaces.ServiceIdentifier<T>): interfaces.BindingToSyntax<T> {

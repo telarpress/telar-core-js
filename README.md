@@ -13,6 +13,13 @@
  Telar Core including basic tools for Telar projects. Providing base packages for database, handle server request/response , email, phone, re-captcha, security and other useful functionalitis for Telar projects.
 </div>
 
+## Prerequires
+
+```sh
+npm install koa @koa/router ajv reflect-metadata @telar/mvc
+#or
+yarn add koa @koa/router ajv reflect-metadata @telar/mvc
+```
 ## Installation
 
 Telar core is available on npm. You can install it using:
