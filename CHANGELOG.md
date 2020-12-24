@@ -1,3 +1,10 @@
+## [1.1.8](https://github.com/telarpress/telar-core-js/compare/v1.1.7...v1.1.8) (2020-12-15)
+
+
+### Bug Fixes
+
+* add csj in the root of package ([e362b67](https://github.com/telarpress/telar-core-js/commit/e362b670649b0c378a378cf2d9dd9e7edbe9a2fb))
+
 ## [1.1.7](https://github.com/telarpress/telar-core-js/compare/v1.1.6...v1.1.7) (2020-12-15)
 
 
