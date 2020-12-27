@@ -288,17 +288,16 @@ function parseCookie(w: expressCore.Response, cookieMap: Cookies, global: CoreCo
     }
     const keydata = global.publicKey;
     const cookie = `${cookieMap.header}.${cookieMap.payload}.${cookieMap.sign}`;
-    const [parsed, parseErr] = securityUtils.verifyJWT(cookie, keydata);
-
-    if (parseErr != null) {
+    try {
+        const parsed = securityUtils.verifyJWT(cookie, keydata);
+        return [parsed, null];
+    } catch (error) {
         // eslint-disable-next-line no-console
-        console.log(parseErr, cookie);
-        writeError('Unable to decode cookie, please clear your cookies and sign-in again', parseErr);
-        return [null, parseErr];
+        console.log(error, cookie);
+        writeError('Unable to decode cookie, please clear your cookies and sign-in again', error);
+        return [null, error];
     }
-    return [parsed, null];
 }
-
 // checkProtection check protection
 function checkProtection(
     w: expressCore.Response,
