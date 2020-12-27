@@ -8,24 +8,14 @@ import { Claims } from '../server/server';
 
 export function signJWT(
     privateKey: string,
-    payload: string,
+    payload: string | object | Buffer,
     expiresIn: string | number | undefined,
-): [string | null, Error | null] {
-    try {
-        const token = jwt.sign(payload, privateKey, { algorithm: 'RS256', expiresIn });
-        return [token, null];
-    } catch (error) {
-        return [null, error];
-    }
+): string {
+    return jwt.sign(payload, privateKey, { algorithm: 'RS256', expiresIn });
 }
 
-export function verifyJWT(token: string, secret: string): [Claims | null, Error | null] {
-    try {
-        const decoded = jwt.verify(token, secret);
-        return [decoded as Claims, null];
-    } catch (error) {
-        return [null, error];
-    }
+export function verifyJWT(token: string, secret: string): Claims {
+    return jwt.verify(token, secret) as Claims;
 }
 export default {
     signJWT,
