@@ -14,8 +14,8 @@ export function signJWT(
     return jwt.sign(payload, privateKey, { algorithm: 'RS256', expiresIn });
 }
 
-export function verifyJWT(token: string, secret: string): Claims {
-    return jwt.verify(token, secret) as Claims;
+export function verifyJWT(token: string, secret: string): { claim: Claims; [key: string]: any } {
+    return jwt.verify(token, secret) as { claim: Claims; [key: string]: any };
 }
 export default {
     signJWT,
