@@ -290,7 +290,7 @@ function parseCookie(w: expressCore.Response, cookieMap: Cookies, global: CoreCo
     const cookie = `${cookieMap.header}.${cookieMap.payload}.${cookieMap.sign}`;
     try {
         const parsed = securityUtils.verifyJWT(cookie, keydata);
-        return [parsed, null];
+        return [parsed.claim, null];
     } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error, cookie);
