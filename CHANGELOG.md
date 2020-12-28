@@ -1,3 +1,11 @@
+## [1.2.2](https://github.com/telarpress/telar-core-js/compare/v1.2.1...v1.2.2) (2020-12-28)
+
+
+### Bug Fixes
+
+* build issue ([d5fb008](https://github.com/telarpress/telar-core-js/commit/d5fb00891c9c2ed333e2b30dcb3bb6f3c7e23c51))
+* return claim object on jwt verifying ([a1bb273](https://github.com/telarpress/telar-core-js/commit/a1bb273ae88e3a662ba4fb584d9f2a964b5e95a9))
+
 ## [1.2.1](https://github.com/telarpress/telar-core-js/compare/v1.2.0...v1.2.1) (2020-12-27)
 
 
