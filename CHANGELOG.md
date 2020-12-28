@@ -1,3 +1,11 @@
+## [1.2.1](https://github.com/telarpress/telar-core-js/compare/v1.2.0...v1.2.1) (2020-12-27)
+
+
+### Bug Fixes
+
+* change JWT throw error ([94ae2e9](https://github.com/telarpress/telar-core-js/commit/94ae2e9fabe1089c7da70334502ae2ce60ed5a02))
+* parse cookie error fixed ([2ebe8a5](https://github.com/telarpress/telar-core-js/commit/2ebe8a553b36c519643950fb138cf6a792539550))
+
 # [1.2.0](https://github.com/telarpress/telar-core-js/compare/v1.1.8...v1.2.0) (2020-12-24)
 
 
