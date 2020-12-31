@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/telarpress/telar-core-js/compare/v1.3.0...v1.4.0) (2020-12-31)
+
+
+### Features
+
+* separate file CoreMetaTypes ([fa11790](https://github.com/telarpress/telar-core-js/commit/fa11790c04431aad9e138b9c4f13b16b3de07b75))
+
 # [1.3.0](https://github.com/telarpress/telar-core-js/compare/v1.2.2...v1.3.0) (2020-12-31)
 
 
