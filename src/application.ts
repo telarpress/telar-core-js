@@ -18,3 +18,7 @@ export type HostHandler = (
     req: IncomingMessage | Http2ServerRequest,
     res: ServerResponse | Http2ServerResponse,
 ) => void;
+
+export const CoreMetaTypes = {
+    DataRepository: Symbol.for('DataRepository'),
+};
