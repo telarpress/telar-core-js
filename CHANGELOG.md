@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/telarpress/telar-core-js/compare/v1.2.2...v1.3.0) (2020-12-31)
+
+
+### Features
+
+* add core meta data types ([7baf9a4](https://github.com/telarpress/telar-core-js/commit/7baf9a44f349343917df3b6226fae82554cc9b12))
+
 ## [1.2.2](https://github.com/telarpress/telar-core-js/compare/v1.2.1...v1.2.2) (2020-12-28)
 
 
