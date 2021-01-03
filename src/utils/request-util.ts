@@ -40,7 +40,7 @@ export function callHMAC(
     data: any,
     secret: string,
     method = 'post',
-    headers = { 'Content-Type': 'application/json' } as { [key: string]: string },
+    headers: { [key: string]: string } = { 'Content-Type': 'application/json' },
 ): Promise<Response> {
     const body = JSON.stringify(data);
     headers = { ...headers, [XCloudSignature]: HMACUtil.sign(body, secret) };
