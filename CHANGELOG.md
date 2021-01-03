@@ -1,3 +1,10 @@
+## [1.5.4](https://github.com/telarpress/telar-core-js/compare/v1.5.3...v1.5.4) (2021-01-03)
+
+
+### Bug Fixes
+
+* improve call request header type ([1d94857](https://github.com/telarpress/telar-core-js/commit/1d948570b941b6f234075d41db3bd68e0281bef4))
+
 ## [1.5.3](https://github.com/telarpress/telar-core-js/compare/v1.5.2...v1.5.3) (2021-01-03)
 
 
