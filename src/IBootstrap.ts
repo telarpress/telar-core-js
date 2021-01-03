@@ -8,3 +8,10 @@ export abstract class IBootstrap {
     abstract configureServices(services: IServiceCollection): Promise<void>;
     abstract configure(app: IApplicationBuilder<any, {}>, env: IWebHostEnvironment): void;
 }
+
+declare module 'koa' {
+    interface Request {
+        body?: any;
+        rawBody: string;
+    }
+}
