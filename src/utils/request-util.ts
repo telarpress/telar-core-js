@@ -18,7 +18,7 @@ export function call(
     url: string,
     data: any,
     method = 'post',
-    headers = { 'Content-Type': 'application/json' },
+    headers: { [key: string]: string } = { 'Content-Type': 'application/json' },
 ): Promise<Response> {
     return fetch(url, {
         method: method,
