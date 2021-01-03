@@ -4,6 +4,7 @@
 // https://opensource.org/licenses/MIT
 
 import fetch, { Response } from 'node-fetch';
+import { XCloudSignature } from '../server';
 import HMACUtil from './hmac-util';
 
 /**
@@ -39,11 +40,13 @@ export function callHMAC(
     data: any,
     secret: string,
     method = 'post',
-    headers = { 'Content-Type': 'application/json' },
+    headers = { 'Content-Type': 'application/json' } as { [key: string]: string },
 ): Promise<Response> {
+    const body = JSON.stringify(data);
+    headers = { ...headers, [XCloudSignature]: HMACUtil.sign(body, secret) };
     return fetch(url, {
         method: method,
-        body: HMACUtil.sign(JSON.stringify(data), secret),
+        body,
         headers,
     });
 }
