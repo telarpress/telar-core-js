@@ -9,3 +9,10 @@ export type Initiazlizer = ConfigStore;
 
 export { EndpointRouterProps, Middleware, RouterMiddleware, HostHandler } from './application';
 export { COMMON, TYPE, METADATA_KEY } from './constants';
+
+declare module 'koa' {
+    interface Request {
+        body?: any;
+        rawBody: string;
+    }
+}
