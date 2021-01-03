@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/telarpress/telar-core-js/compare/v1.5.0...v1.5.1) (2021-01-03)
+
+
+### Bug Fixes
+
+* add koa declare for koa request ([484cadc](https://github.com/telarpress/telar-core-js/commit/484cadcde9d6b3aee1a012402464ffb4bcbda07f))
+
 # [1.5.0](https://github.com/telarpress/telar-core-js/compare/v1.4.0...v1.5.0) (2021-01-03)
 
 
