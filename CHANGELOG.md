@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/telarpress/telar-core-js/compare/v1.4.0...v1.5.0) (2021-01-03)
+
+
+### Bug Fixes
+
+* add XCloudSignature header for http request ([db17130](https://github.com/telarpress/telar-core-js/commit/db1713094831cf633487e089f7f6354c726aea9f))
+
+
+### Features
+
+* add request call util with HMAC ([0b6587e](https://github.com/telarpress/telar-core-js/commit/0b6587eeb1b78b09bc50fd40b8482dfbca614847))
+
 # [1.4.0](https://github.com/telarpress/telar-core-js/compare/v1.3.0...v1.4.0) (2020-12-31)
 
 
