@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/telarpress/telar-core-js/compare/v1.5.5...v1.6.0) (2021-01-11)
+
+
+### Features
+
+* add send email with html ([5cd2644](https://github.com/telarpress/telar-core-js/commit/5cd26446cd1c3bec9878fad09d046505dfc32a46))
+
 ## [1.5.5](https://github.com/telarpress/telar-core-js/compare/v1.5.4...v1.5.5) (2021-01-03)
 
 
