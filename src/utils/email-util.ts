@@ -41,13 +41,41 @@ export class Email {
             },
         });
     }
+
+    /**
+     * Send an email
+     * @param req Email request object
+     * @param html HTML to send
+     */
+    async sendEmail(req: EmailRequest, html: string): Promise<unknown> {
+        try {
+            const mailOptions = {
+                from: this.refEmail,
+                to: req.to,
+                subject: req.subject,
+                html,
+            };
+            if (!this.mailTransport) {
+                // eslint-disable-next-line no-console
+                console.error('The email is nit initialize. Call initEmail() before send!');
+                throw new Error(`The email is nit initialize. Call initEmail() before send!`);
+            }
+            const result = await this.mailTransport.sendMail(mailOptions);
+            return result;
+        } catch (error) {
+            // eslint-disable-next-line no-console
+            console.error('There was an error while sending the email:', error);
+            throw new Error(`There was an error while sending the email: ${error}`);
+        }
+    }
+
     /**
      * Send an email
      * @param req Email request object
      * @param tmplPath HTML template path
      * @param data Parameter for HTML template
      */
-    async sendEmail(req: EmailRequest, tmplPath: string, data: Record<string, unknown>): Promise<unknown> {
+    async sendEmailTemplate(req: EmailRequest, tmplPath: string, data: Record<string, unknown>): Promise<unknown> {
         try {
             const htmlToSend = await htmlUtil.getParsedHtml(tmplPath, data);
             const mailOptions = {
