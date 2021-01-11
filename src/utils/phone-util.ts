@@ -20,7 +20,7 @@ export class PhoneClient {
      * @param authToken Phone client authToken
      * @param sourceNumber Phone source number
      */
-    NewPhone(authId: string, authToken: string, sourceNumber: string): PhoneClient {
+    static NewPhone(authId: string, authToken: string, sourceNumber: string): PhoneClient {
         log.info('Start Phone client initializing...');
         const client = new plivo.Client(authId, authToken);
 
