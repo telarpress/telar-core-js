@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/telarpress/telar-core-js/compare/v1.6.0...v1.6.1) (2021-01-11)
+
+
+### Bug Fixes
+
+* make new phone function static ([5210b85](https://github.com/telarpress/telar-core-js/commit/5210b855b605c157cb693873046c8f229e812b3b))
+
 # [1.6.0](https://github.com/telarpress/telar-core-js/compare/v1.5.5...v1.6.0) (2021-01-11)
 
 
