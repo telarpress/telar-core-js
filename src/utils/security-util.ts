@@ -7,11 +7,12 @@ import * as jwt from 'jsonwebtoken';
 import { Claims } from '../server/server';
 
 export function signJWT(
-    privateKey: string,
+    cert: string,
     payload: string | object | Buffer,
     expiresIn: string | number | undefined,
+    options?: jwt.SignOptions,
 ): string {
-    return jwt.sign(payload, privateKey, { algorithm: 'RS256', expiresIn });
+    return jwt.sign(payload, cert, { algorithm: 'RS256', expiresIn, ...options });
 }
 
 export function verifyJWT(token: string, secret: string): { claim: Claims; [key: string]: any } {
