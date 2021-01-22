@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/telarpress/telar-core-js/compare/v1.6.1...v1.7.0) (2021-01-21)
+
+
+### Features
+
+* add options for sign JWT ([4742261](https://github.com/telarpress/telar-core-js/commit/474226168833540382ebf3cccea993df0b692580))
+
 ## [1.6.1](https://github.com/telarpress/telar-core-js/compare/v1.6.0...v1.6.1) (2021-01-11)
 
 
