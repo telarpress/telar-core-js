@@ -4,7 +4,6 @@
 // https://opensource.org/licenses/MIT
 
 import * as jwt from 'jsonwebtoken';
-import { Claims } from '../server/server';
 
 export function signJWT(
     cert: string,
@@ -15,8 +14,8 @@ export function signJWT(
     return jwt.sign(payload, cert, { algorithm: 'RS256', expiresIn, ...options });
 }
 
-export function verifyJWT(token: string, secret: string): { claim: Claims; [key: string]: any } {
-    return jwt.verify(token, secret) as { claim: Claims; [key: string]: any };
+export function verifyJWT(token: string, secret: string): { [key: string]: any } {
+    return jwt.verify(token, secret) as { [key: string]: any };
 }
 export default {
     signJWT,
