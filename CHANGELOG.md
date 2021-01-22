@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/telarpress/telar-core-js/compare/v1.7.0...v1.7.1) (2021-01-22)
+
+
+### Bug Fixes
+
+* change verifyJWT return type to key/velue ([39f5d7f](https://github.com/telarpress/telar-core-js/commit/39f5d7fd84413c8518529c566b3c4bd6947e84ca))
+
 # [1.7.0](https://github.com/telarpress/telar-core-js/compare/v1.6.1...v1.7.0) (2021-01-21)
 
 
